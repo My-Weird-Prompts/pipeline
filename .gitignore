@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment files
+.env
+.env.local
+.env.production
+modal-secrets.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pipeline output
+pipeline/output/
+*.tmp
+
+# Voice samples (add your own, not tracked)
+config/voices/**/*.wav
+config/voices/**/*.flac
+config/voices/**/*.mp3
+config/voices/**/*.pt
+
+# Raw show elements (processed versions are tracked)
+pipeline/show-elements/raw/
+
+# Special episodes (one-off scripts)
+pipeline/scripts/special-episodes/

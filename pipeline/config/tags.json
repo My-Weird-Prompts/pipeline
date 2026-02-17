@@ -1,0 +1,839 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-02-02T19:18:22.807873+00:00",
+  "tags": [
+    {
+      "id": "large-language-models",
+      "name": "Large Language Models",
+      "synonyms": [
+        "llms",
+        "llm",
+        "language-models",
+        "gpt",
+        "claude",
+        "gemini"
+      ],
+      "usage_count": 33
+    },
+    {
+      "id": "transformers",
+      "name": "Transformers",
+      "synonyms": [
+        "transformer-architecture",
+        "attention-mechanism",
+        "self-attention"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "fine-tuning",
+      "name": "Fine-Tuning",
+      "synonyms": [
+        "finetuning",
+        "model-training",
+        "rlhf",
+        "lora",
+        "qlora"
+      ],
+      "usage_count": 7
+    },
+    {
+      "id": "prompt-engineering",
+      "name": "Prompt Engineering",
+      "synonyms": [
+        "prompting",
+        "prompt-design",
+        "system-prompts"
+      ],
+      "usage_count": 9
+    },
+    {
+      "id": "rag",
+      "name": "RAG",
+      "synonyms": [
+        "retrieval-augmented-generation",
+        "vector-search",
+        "semantic-search"
+      ],
+      "usage_count": 3
+    },
+    {
+      "id": "local-inference",
+      "name": "Local Inference",
+      "synonyms": [
+        "local-llm",
+        "on-device-ai",
+        "edge-ai",
+        "ollama"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "gpu-acceleration",
+      "name": "GPU Acceleration",
+      "synonyms": [
+        "cuda",
+        "rocm",
+        "gpu-computing",
+        "nvidia",
+        "amd-gpu"
+      ],
+      "usage_count": 10
+    },
+    {
+      "id": "text-to-speech",
+      "name": "Text-to-Speech",
+      "synonyms": [
+        "tts",
+        "speech-synthesis",
+        "voice-generation"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "speech-recognition",
+      "name": "Speech Recognition",
+      "synonyms": [
+        "stt",
+        "speech-to-text",
+        "asr",
+        "whisper",
+        "transcription"
+      ],
+      "usage_count": 1
+    },
+    {
+      "id": "voice-cloning",
+      "name": "Voice Cloning",
+      "synonyms": [
+        "voice-synthesis",
+        "voice-replication",
+        "custom-voices"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "image-generation",
+      "name": "Image Generation",
+      "synonyms": [
+        "stable-diffusion",
+        "flux",
+        "dall-e",
+        "midjourney",
+        "ai-art"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "ai-agents",
+      "name": "AI Agents",
+      "synonyms": [
+        "autonomous-agents",
+        "multi-agent",
+        "agentic-ai",
+        "mcp"
+      ],
+      "usage_count": 9
+    },
+    {
+      "id": "automation",
+      "name": "Automation",
+      "synonyms": [
+        "workflow-automation",
+        "n8n",
+        "zapier",
+        "scripting"
+      ],
+      "usage_count": 1
+    },
+    {
+      "id": "prompt-injection",
+      "name": "Prompt Injection",
+      "synonyms": [
+        "jailbreaking",
+        "adversarial-prompts",
+        "security-vulnerabilities"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "ai-safety",
+      "name": "AI Safety",
+      "synonyms": [
+        "alignment",
+        "guardrails",
+        "content-filtering",
+        "red-teaming"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "networking",
+      "name": "Networking",
+      "synonyms": [
+        "home-networking",
+        "wifi",
+        "ethernet",
+        "mesh-networks"
+      ],
+      "usage_count": 5
+    },
+    {
+      "id": "vpn",
+      "name": "VPN",
+      "synonyms": [
+        "virtual-private-network",
+        "tailscale",
+        "wireguard"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "synonyms": [
+        "containers",
+        "containerization",
+        "podman",
+        "kubernetes"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "smart-home",
+      "name": "Smart Home",
+      "synonyms": [
+        "home-automation",
+        "iot",
+        "home-assistant"
+      ],
+      "usage_count": 2
+    },
+    {
+      "id": "privacy",
+      "name": "Privacy",
+      "synonyms": [
+        "data-privacy",
+        "surveillance",
+        "data-collection"
+      ],
+      "usage_count": 8
+    },
+    {
+      "id": "benchmarks",
+      "name": "Benchmarks",
+      "synonyms": [
+        "model-evaluation",
+        "performance-testing",
+        "leaderboards"
+      ],
+      "usage_count": 1
+    },
+    {
+      "id": "context-windows",
+      "name": "Context Windows",
+      "synonyms": [
+        "context-length",
+        "token-limits",
+        "long-context"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "quantization",
+      "name": "Quantization",
+      "synonyms": [
+        "model-compression",
+        "gguf",
+        "gptq",
+        "awq"
+      ],
+      "usage_count": 3
+    },
+    {
+      "id": "open-source-ai",
+      "name": "Open Source AI",
+      "synonyms": [
+        "open-weights",
+        "llama",
+        "mistral",
+        "open-models"
+      ],
+      "usage_count": 1
+    },
+    {
+      "id": "api-integration",
+      "name": "API Integration",
+      "synonyms": [
+        "api-design",
+        "openai-api",
+        "rest-api"
+      ],
+      "usage_count": 0
+    },
+    {
+      "id": "geodesy",
+      "name": "Geodesy",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "coordinate-systems",
+      "name": "Coordinate Systems",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "tectonic-drift",
+      "name": "Tectonic Drift",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "telecommunications",
+      "name": "Telecommunications",
+      "synonyms": [],
+      "usage_count": 3
+    },
+    {
+      "id": "esim",
+      "name": "Esim",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "neuroscience",
+      "name": "Neuroscience",
+      "synonyms": [],
+      "usage_count": 11
+    },
+    {
+      "id": "addiction-treatment",
+      "name": "Addiction Treatment",
+      "synonyms": [],
+      "usage_count": 2
+    },
+    {
+      "id": "harm-reduction",
+      "name": "Harm Reduction",
+      "synonyms": [],
+      "usage_count": 2
+    },
+    {
+      "id": "electronic-warfare",
+      "name": "Electronic Warfare",
+      "synonyms": [],
+      "usage_count": 3
+    },
+    {
+      "id": "aviation-technology",
+      "name": "Aviation Technology",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "architecture",
+      "name": "Architecture",
+      "synonyms": [],
+      "usage_count": 14
+    },
+    {
+      "id": "urban-planning",
+      "name": "Urban Planning",
+      "synonyms": [],
+      "usage_count": 7
+    },
+    {
+      "id": "structural-engineering",
+      "name": "Structural Engineering",
+      "synonyms": [],
+      "usage_count": 3
+    },
+    {
+      "id": "supply-chain-security",
+      "name": "Supply Chain Security",
+      "synonyms": [],
+      "usage_count": 5
+    },
+    {
+      "id": "neurodivergence",
+      "name": "Neurodivergence",
+      "synonyms": [],
+      "usage_count": 4
+    },
+    {
+      "id": "sensory-processing",
+      "name": "Sensory Processing",
+      "synonyms": [],
+      "usage_count": 6
+    },
+    {
+      "id": "child-development",
+      "name": "Child Development",
+      "synonyms": [],
+      "usage_count": 2
+    },
+    {
+      "id": "executive-protection",
+      "name": "Executive Protection",
+      "synonyms": [],
+      "usage_count": 2
+    },
+    {
+      "id": "situational-awareness",
+      "name": "Situational Awareness",
+      "synonyms": [],
+      "usage_count": 2
+    },
+    {
+      "id": "security-logistics",
+      "name": "Security Logistics",
+      "synonyms": [],
+      "usage_count": 4
+    },
+    {
+      "id": "zero-day-exploits",
+      "name": "Zero Day Exploits",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "financial-fraud",
+      "name": "Financial Fraud",
+      "synonyms": [],
+      "usage_count": 2
+    },
+    {
+      "id": "cryptocurrency-scams",
+      "name": "Cryptocurrency Scams",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "social-engineering",
+      "name": "Social Engineering",
+      "synonyms": [],
+      "usage_count": 2
+    },
+    {
+      "id": "disarmament",
+      "name": "Disarmament",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "peace-processes",
+      "name": "Peace Processes",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "security-dilemma",
+      "name": "Security Dilemma",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "whistleblower-protection",
+      "name": "Whistleblower Protection",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "hardware-redundancy",
+      "name": "Hardware Redundancy",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "fault-tolerance",
+      "name": "Fault Tolerance",
+      "synonyms": [],
+      "usage_count": 3
+    },
+    {
+      "id": "data-integrity",
+      "name": "Data Integrity",
+      "synonyms": [],
+      "usage_count": 4
+    },
+    {
+      "id": "display-technology",
+      "name": "Display Technology",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "digital-eye-strain",
+      "name": "Digital Eye Strain",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "tenant-rights",
+      "name": "Tenant Rights",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "social-housing",
+      "name": "Social Housing",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "international-trade",
+      "name": "International Trade",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "high-availability",
+      "name": "High Availability",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "logistics",
+      "name": "Logistics",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "labor-ethics",
+      "name": "Labor Ethics",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "sustainability",
+      "name": "Sustainability",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "digital-detox",
+      "name": "Digital Detox",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "digestive-physiology",
+      "name": "Digestive Physiology",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "post-operative-recovery",
+      "name": "Post Operative Recovery",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "hydration-strategies",
+      "name": "Hydration Strategies",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "biofeedback",
+      "name": "Biofeedback",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "psychopharmacology",
+      "name": "Psychopharmacology",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "neuroplasticity",
+      "name": "Neuroplasticity",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "workforce-automation",
+      "name": "Workforce Automation",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "automation-tax",
+      "name": "Automation Tax",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "moravecs-paradox",
+      "name": "Moravecs Paradox",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "neurotechnology",
+      "name": "Neurotechnology",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "brain-stimulation",
+      "name": "Brain Stimulation",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "subsea-infrastructure",
+      "name": "Subsea Infrastructure",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "digital-evidence",
+      "name": "Digital Evidence",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "cryptography",
+      "name": "Cryptography",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "legal-technology",
+      "name": "Legal Technology",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "power-supply-units",
+      "name": "Power Supply Units",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "hardware-reliability",
+      "name": "Hardware Reliability",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "electrical-engineering",
+      "name": "Electrical Engineering",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "public-transit",
+      "name": "Public Transit",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "data-storage",
+      "name": "Data Storage",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "human-computer-interaction",
+      "name": "Human Computer Interaction",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "conflict-mediation",
+      "name": "Conflict Mediation",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "geopolitical-strategy",
+      "name": "Geopolitical Strategy",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "hybrid-warfare",
+      "name": "Hybrid Warfare",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "backup-strategies",
+      "name": "Backup Strategies",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "generative-ai",
+      "name": "Generative Ai",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "machine-learning-history",
+      "name": "Machine Learning History",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "audio-hardware",
+      "name": "Audio Hardware",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "hardware-acceleration",
+      "name": "Hardware Acceleration",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "vector-databases",
+      "name": "Vector Databases",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "inference-parameters",
+      "name": "Inference Parameters",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "local-ai",
+      "name": "Local Ai",
+      "synonyms": [],
+      "usage_count": 10
+    },
+    {
+      "id": "ai-alignment",
+      "name": "Ai Alignment",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "video-generation",
+      "name": "Video Generation",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "cultural-bias",
+      "name": "Cultural Bias",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "parallel-computing",
+      "name": "Parallel Computing",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "stateless-architecture",
+      "name": "Stateless Architecture",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "model-collapse",
+      "name": "Model Collapse",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "neuro-symbolic-ai",
+      "name": "Neuro Symbolic Ai",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "philosophical-mapping",
+      "name": "Philosophical Mapping",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "state-space-models",
+      "name": "State Space Models",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "drug-discovery",
+      "name": "Drug Discovery",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "generative-chemistry",
+      "name": "Generative Chemistry",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "artificial-general-intelligence",
+      "name": "Artificial General Intelligence",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "llm-as-a-judge",
+      "name": "Llm As A Judge",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "ai-detection",
+      "name": "Ai Detection",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "hallucinations",
+      "name": "Hallucinations",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "speech-to-speech",
+      "name": "Speech To Speech",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "training-data",
+      "name": "Training Data",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "small-language-models",
+      "name": "Small Language Models",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "verifiable-ai",
+      "name": "Verifiable Ai",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "knowledge-management",
+      "name": "Knowledge Management",
+      "synonyms": [],
+      "usage_count": 1
+    },
+    {
+      "id": "semiconductors",
+      "name": "Semiconductors",
+      "synonyms": [],
+      "usage_count": 1
+    }
+  ]
+}
