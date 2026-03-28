@@ -27,13 +27,13 @@ Voice Recording
      |                          |                       |
      v                          v                       |
 [Review Pass 1]          [Polish Pass 2]          [Cover Art]
-  (Gemini +                (Gemini)              (Fal AI Flux)
-   grounding)                  |                       |
+  (cross-family LLM +      (OpenRouter)          (Fal AI Flux)
+   web grounding)              |                       |
      |                         v                       |
      └──────> [Validate] ─> [Metadata]                 |
                    |                                    |
                    v                                    |
-            [Parallel TTS]  (2x T4 GPU workers)        |
+            [Parallel TTS]  (3x T4 GPU workers)        |
                    |                                    |
                    v                                    |
             [Assemble Audio]  <─────────────────────────
@@ -47,12 +47,71 @@ Voice Recording
 
 See [docs/architecture.md](docs/architecture.md) for the full 16-step breakdown.
 
+### LangGraph Pipeline
+
+The script generation stage is a [LangGraph](https://github.com/langchain-ai/langgraph) StateGraph with four nodes:
+
+```python
+# pipeline/graph/pipeline.py
+
+def build_pipeline() -> StateGraph:
+    graph = StateGraph(PipelineState)
+
+    graph.add_node("prompt_enhancement", prompt_enhancement)
+    graph.add_node("grounding", grounding)
+    graph.add_node("script_writer", script_writer)
+    graph.add_node("review", review)
+
+    graph.add_edge(START, "prompt_enhancement")
+    graph.add_edge("prompt_enhancement", "grounding")
+    graph.add_edge("grounding", "script_writer")
+    graph.add_edge("script_writer", "review")
+    graph.add_edge("review", END)
+
+    return graph.compile()
+```
+
+State flows through the graph as a typed dict:
+
+```python
+# pipeline/graph/state.py
+
+class PipelineState(TypedDict, total=False):
+    # Inputs
+    audio_path: Optional[str]
+    text_topic: Optional[str]
+    host_notes: Optional[str]
+    episode_length: Optional[int]
+    job_id: Optional[str]
+
+    # Prompt Enhancement outputs
+    raw_transcript: str
+    transcript: str
+
+    # Grounding Agent outputs
+    search_context: Optional[str]       # Tavily web search
+    similar_episodes: Optional[list]    # pgvector RAG results
+    episode_context: Optional[str]      # Cross-episode references
+    episode_plan: Optional[EpisodePlan]
+
+    # Script Writer outputs
+    script: str
+    script_model_id: str
+    script_model_display: str
+
+    # Pipeline metadata
+    pipeline_info: dict
+```
+
+**Prompt Enhancement** transcribes audio, fixes typos, and extracts host notes. **Grounding** runs web search, RAG, and episode planning. **Script Writer** generates the dialogue using a randomized model pool for A/B testing. **Review** performs cross-family LLM review plus deterministic verbal tic cleanup.
+
 ## Quick Start
 
 ### Prerequisites
 
 - [Modal](https://modal.com) account (serverless GPU compute)
-- [Google AI Studio](https://aistudio.google.com) API key (Gemini)
+- [OpenRouter](https://openrouter.ai) API key (LLM gateway — routes to multiple model providers)
+- [Google AI Studio](https://aistudio.google.com) API key (Gemini — used for audio transcription)
 - [Fal AI](https://fal.ai) API key (image generation)
 - PostgreSQL database with [pgvector](https://github.com/pgvector/pgvector) extension
 - [Cloudflare R2](https://www.cloudflare.com/r2/) bucket (S3-compatible storage)
@@ -95,22 +154,15 @@ See [docs/webhook-api.md](docs/webhook-api.md) for the full API reference.
 | Component | Technology |
 |-----------|-----------|
 | Compute | [Modal](https://modal.com) (serverless GPU) |
-| LLM | [Google Gemini](https://ai.google.dev/) (all text generation) |
-| TTS | [Chatterbox](https://github.com/resemble-ai/chatterbox) (local, on GPU) |
+| LLM Gateway | [OpenRouter](https://openrouter.ai) (multi-model routing) |
+| Script Models | Randomized pool: Xiaomi MiMo v2 Pro, DeepSeek v3.2, MiniMax M2.7, Gemini 3 Flash |
+| Transcription | [Google Gemini](https://ai.google.dev/) (multimodal audio input) |
+| TTS | [Chatterbox](https://github.com/resemble-ai/chatterbox) (parallel GPU workers, pre-computed voice conditionals) |
+| Orchestration | [LangGraph](https://github.com/langchain-ai/langgraph) (multi-agent state graph) |
 | Image Gen | [Fal AI](https://fal.ai) (Flux Schnell) |
 | Storage | [Cloudflare R2](https://www.cloudflare.com/r2/) (S3-compatible) |
-| Database | PostgreSQL + [pgvector](https://github.com/pgvector/pgvector) |
+| Database | PostgreSQL + [pgvector](https://github.com/pgvector/pgvector) (hosted on [Neon](https://neon.tech)) |
 | Audio | FFmpeg + pydub |
-
-## Cost Per Episode
-
-| Resource | Cost |
-|----------|------|
-| Modal GPU (2x T4, ~10 min) | ~$0.20 |
-| Gemini API (all LLM calls) | ~$0.01 |
-| Fal AI (cover art) | ~$0.01 |
-| R2 Storage | Free egress |
-| **Total** | **~$0.22** |
 
 ## Documentation
 
@@ -124,7 +176,7 @@ See [docs/webhook-api.md](docs/webhook-api.md) for the full API reference.
 ```
 pipeline/           # Core generation logic
   core/             # Transcription, planning, script gen, review, polish, metadata
-  llm/              # Gemini API wrappers
+  llm/              # OpenRouter LLM gateway
   tts/              # Chatterbox TTS engine
   audio/            # Audio processing and assembly
   storage/          # R2 and Wasabi storage clients
