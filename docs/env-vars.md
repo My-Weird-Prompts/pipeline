@@ -6,8 +6,9 @@ All environment variables used by the MWP pipeline. Variables marked **Required*
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `GEMINI_API_KEY` | Yes | Google Gemini API key for all LLM operations |
+| `ANTHROPIC_API_KEY` | Yes | Anthropic API key for all LLM operations (script, review, metadata, planning) |
 | `FAL_KEY` | Yes | Fal AI API key for cover art generation |
+| `TAVILY_API_KEY` | No | Tavily API key for web search during grounding stage |
 
 ## Database
 
@@ -29,7 +30,7 @@ All environment variables used by the MWP pipeline. Variables marked **Required*
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `WEBHOOK_SECRET` | Yes | Secret for `X-Webhook-Secret` header on the `/webhook/generate` endpoint |
+| `WEBHOOK_SECRET` | Yes | Secret for `X-Webhook-Secret` header on webhook endpoints |
 
 ## Email Notifications (Resend)
 
@@ -61,37 +62,52 @@ All environment variables used by the MWP pipeline. Variables marked **Required*
 |----------|----------|-------------|
 | `WASABI_ACCESS_KEY` | No | Wasabi S3 access key |
 | `WASABI_SECRET_KEY` | No | Wasabi S3 secret key |
-| `WASABI_BUCKET` | No | Wasabi bucket name (default: `myweirdprompts`) |
-| `WASABI_REGION` | No | Wasabi region (default: `eu-central-2`) |
-| `WASABI_ENDPOINT` | No | Wasabi endpoint URL (default: `https://s3.eu-central-2.wasabisys.com`) |
+| `WASABI_BUCKET` | No | Wasabi bucket name |
+| `WASABI_REGION` | No | Wasabi region |
+| `WASABI_ENDPOINT` | No | Wasabi endpoint URL |
+
+## Social Media
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `BLUESKY_HANDLE` | No | Bluesky account handle for auto-posting |
+| `BLUESKY_PASSWORD` | No | Bluesky app password |
+| `TELEGRAM_BOT_TOKEN` | No | Telegram bot token for channel posting |
+| `TELEGRAM_CHANNEL_ID` | No | Telegram channel to post to |
+| `TWITTER_API_KEY` | No | X/Twitter API key |
+| `TWITTER_API_SECRET` | No | X/Twitter API secret |
+| `TWITTER_ACCESS_TOKEN` | No | X/Twitter access token |
+| `TWITTER_ACCESS_SECRET` | No | X/Twitter access token secret |
 
 ## Model Overrides
 
-All LLM models default to `google/gemini-3-flash-preview` and can be overridden:
+All LLM models default to Anthropic Claude (Sonnet 4.6 for core stages, Haiku 4.5 for utility) and can be overridden:
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `TRANSCRIPTION_MODEL` | `google/gemini-3-flash-preview` | Audio transcription model |
-| `PLANNING_MODEL` | `google/gemini-3-flash-preview` | Episode planning model |
-| `SCRIPT_MODEL` | `google/gemini-3-flash-preview` | Script generation model |
-| `METADATA_MODEL` | `google/gemini-3-flash-preview` | Metadata extraction model |
-| `EPISODE_PLANNING_MODEL` | `google/gemini-3-flash-preview` | Episode planning agent model |
-| `SCRIPT_REVIEW_MODEL` | `google/gemini-3-flash-preview` | Script review (Pass 1) model |
-| `SCRIPT_POLISH_MODEL` | `google/gemini-3-flash-preview` | Script polish (Pass 2) model |
+| `SCRIPT_MODEL` | `claude-sonnet-4-6` | Script generation model |
+| `REVIEW_MODEL` | `claude-sonnet-4-6` | Script review (Pass 1) model |
+| `PLANNING_MODEL` | `claude-haiku-4-5-20251001` | Episode planning model |
+| `METADATA_MODEL` | `claude-haiku-4-5-20251001` | Metadata extraction model |
+| `TAGGING_MODEL` | `claude-haiku-4-5-20251001` | Episode tagging model |
 
 ## Pipeline Configuration
 
 | Variable | Default | Description |
 |----------|---------|-------------|
+| `TTS_WORKERS` | `3` | Number of parallel TTS GPU workers |
+| `TTS_GPU` | `A10G` | GPU type for TTS workers |
+| `GPU_PROVIDER` | `modal` | GPU provider (`modal` or `runpod`) |
 | `DEFAULT_COVER_ART_URL` | (built-in) | Fallback cover art URL if generation fails |
 | `LOCAL_RECOVERY_DIR` | `/working/recovery` | Local directory for episode recovery files |
-| `R2_RECOVERY_BUCKET` | `mwp-episodes` | R2 bucket for recovery storage |
+| `LANGSMITH_API_KEY` | (none) | Optional LangSmith tracing key |
 
 ## Modal Secrets
 
 When deploying to Modal, secrets are configured as Modal secret groups rather than `.env` files:
 
-- **`mwp-secrets`**: All required keys (Gemini, Fal, R2, Postgres, Resend, webhook secret)
+- **`mwp-secrets`**: All required keys (Anthropic, Fal, R2, Postgres, Resend, webhook secret, social media)
 - **`mwp-secrets-vercel`**: Vercel deploy hook URL (separate group for isolation)
+- **`mwp-secrets-gdrive`**: Google Drive service account for pre-production guide uploads
 
 See [setup.md](setup.md) for Modal secret creation commands.
